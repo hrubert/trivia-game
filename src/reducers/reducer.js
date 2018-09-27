@@ -4,7 +4,7 @@ export function reducer(state, action) {
         return {
             triviaList: [],
             currentQuestion: 0,
-            updateTrivia: false
+            updateTrivia: true
         }
     }
 
@@ -16,20 +16,30 @@ export function reducer(state, action) {
                 triviaList: state.triviaList.concat(newList),
                 updateTrivia: false
             }
-        case 'CORRECT':
-            return {
-                ...state,
-                currentQuestion: state.currentQuestion +1
+        case 'ANSWER':
+            if (action.correct) {
+                return {
+                    ...state,
+                    currentQuestion: state.currentQuestion +1
+                }
+            } else {
+                return {
+                    ...state,
+                    currentQuestion: 0,
+                    triviaList: [],
+                    updateTrivia: true
+                }
             }
+            
             // notification of correct
             // money increases
-        case 'WRONG':
-            return {
-                ...state,
-                currentQuestion: 0,
-                triviaList: [],
-                updateTrivia: true
-            }
+        // case 'WRONG':
+        //     return {
+        //         ...state,
+        //         currentQuestion: 0,
+        //         triviaList: [],
+        //         updateTrivia: true
+        //     }
             
             // should say the correct ans
             // money resets. Questions reset

@@ -5,12 +5,14 @@ export const fetchData = data => ({
     data: data
 })
 
-export const correct = num => ({
-    type: 'CORRECT',
-    num: num
+export const answer = (num, correct) => ({
+    type: 'ANSWER',
+    num: num,
+    correct: correct
 })
 
 export const wrong = num => ({
     type: 'WRONG',
     num: num
 })
+

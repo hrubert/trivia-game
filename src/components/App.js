@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Container from "./Container"
-import { fetchData, correct, wrong } from "../actions/index";
+import { fetchData, answer, wrong } from "../actions/index";
 
 const mapStateToProps = (state) => {
   return {
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onFetch: (data) => dispatch(fetchData(data)),
-    onCorrect: (num) => dispatch(correct(num)),
+    onAnswer: (num, ans, correct) => dispatch(answer(num, ans, correct)),
     onWrong: (num) => dispatch(wrong(num))
   }
 }

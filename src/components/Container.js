@@ -3,20 +3,8 @@ import LoginAppBar from './AppBar';
 import QuestionCard from './QuestionCard';
 
 class Container extends Component {
-    componentWillMount() {
-        fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
-        .then((response => response.json()))
-        .then(response => this.props.onFetch(response))
-        fetch('https://opentdb.com/api.php?amount=5&difficulty=medium&type=multiple')
-        .then((response => response.json()))
-        .then(response => this.props.onFetch(response))
-        fetch('https://opentdb.com/api.php?amount=5&difficulty=hard&type=multiple')
-        .then((response => response.json()))
-        .then(response => this.props.onFetch(response))
-    }
-
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        if(nextProps.updateTrivia === true) {
+    render() {
+        if(this.props.updateTrivia === true) {
             fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
             .then((response => response.json()))
             .then(response => this.props.onFetch(response))
@@ -26,16 +14,14 @@ class Container extends Component {
             fetch('https://opentdb.com/api.php?amount=5&difficulty=hard&type=multiple')
             .then((response => response.json()))
             .then(response => this.props.onFetch(response))
-            }
-    }
+        }
 
-    render() {
         return (
             <div>
                 <LoginAppBar />
                 <QuestionCard questionNum={this.props.currentQuestion} 
                     currentQuestion={this.props.triviaList[this.props.currentQuestion]}
-                    handleCorrect={this.props.onCorrect}
+                    handleAnswer={this.props.onAnswer}
                     handleWrong={this.props.onWrong}
                     />
             </div>

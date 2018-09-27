@@ -33,7 +33,33 @@ class QuestionCard extends React.Component {
 
   render() {
     let triviaQuestion = []
+
+    function shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+      
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+      
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+      
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+      
+        return array;
+      }
+    
     if (this.props.currentQuestion !== undefined) {
+
+        let answerChoices = shuffle([{answer: this.props.currentQuestion.correct_answer, correct: true},
+            {answer: this.props.currentQuestion.incorrect_answers[0], correct: false},
+            {answer: this.props.currentQuestion.incorrect_answers[1], correct: false},
+            {answer: this.props.currentQuestion.incorrect_answers[2], correct: false}])
+            // console.log(answerChoices);
      triviaQuestion = (
             <Card key={this.props.questionNum}>
             <CardContent>
@@ -46,26 +72,26 @@ class QuestionCard extends React.Component {
             </CardContent>
             <CardActions>
                 <Button
-                    onClick={() => this.props.handleCorrect(this.props.questionNum)}
+                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[0].correct)}
                     variant="outlined" >
-                    A. {this.props.currentQuestion.correct_answer}
+                    A. {answerChoices[0].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&')}
                 </Button>
                 <Button 
                     variant="outlined" 
-                    onClick={() => this.props.handleWrong(this.props.questionNum)}
+                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[1].correct)}
                     >
-                    B. {this.props.currentQuestion.incorrect_answers[0]}
+                    B. {answerChoices[1].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&')}
                 </Button>
                 <Button variant="outlined"
-                    onClick={() => this.props.handleWrong(this.props.questionNum)}
+                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[2].correct)}
                     >
-                    C. {this.props.currentQuestion.incorrect_answers[1]}
+                    C. {answerChoices[2].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&')}
                 </Button>
                 <Button 
                     variant="outlined"
-                    onClick={() => this.props.handleWrong(this.props.questionNum)}                    
+                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[3].correct)}
                     >
-                    D. {this.props.currentQuestion.incorrect_answers[2]}
+                    D. {answerChoices[3].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&')}
                 </Button>
             </CardActions>
             </Card>
