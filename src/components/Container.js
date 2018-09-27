@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LoginAppBar from './AppBar';
 import QuestionCard from './QuestionCard';
+import CurrentMoney from './CurrentMoney';
 
 class Container extends Component {
     render() {
@@ -24,6 +25,7 @@ class Container extends Component {
                     handleAnswer={this.props.onAnswer}
                     handleWrong={this.props.onWrong}
                     />
+                <CurrentMoney questionNum={this.props.currentQuestion}/>
             </div>
         );
     }
