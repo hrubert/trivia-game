@@ -4,7 +4,8 @@ import { fetchData } from "../actions/index";
 
 const mapStateToProps = (state) => {
   return {
-    triviaList: state.triviaList
+    triviaList: state.triviaList,
+    currentQuestion: state.currentQuestion
   }
 };
 

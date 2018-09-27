@@ -15,11 +15,10 @@ class Container extends Component {
         .then(response => this.props.onFetch(response))
     }
     render() {
-        console.log(this.props.triviaList instanceof Array)
         return (
             <div>
                 <LoginAppBar />
-                <QuestionCard triviaList={this.props.triviaList}/>
+                <QuestionCard questionNum={this.props.currentQuestion} currentQuestion={this.props.triviaList[this.props.currentQuestion]}/>
             </div>
         );
     }

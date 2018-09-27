@@ -3,7 +3,8 @@ export function reducer(state, action) {
     if(state === undefined) {
         console.log("initial state")
         return {
-            triviaList: []
+            triviaList: [],
+            currentQuestion: 0
         }
     }
 
@@ -13,7 +14,8 @@ export function reducer(state, action) {
             console.log(typeof newList)
             return {
                 ...state,
-                triviaList: state.triviaList.concat(newList)
+                triviaList: state.triviaList.concat(newList),
+                currentQuestion: state.currentQuestion
             }    
         default:
             return state;
