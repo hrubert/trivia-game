@@ -8,10 +8,12 @@ export function reducer(state, action) {
     }
 
     switch (action.type) {
-        case 'ACTION':
+        case 'FETCH_DATA':
+            let newList = action.data.results;
+            console.log(typeof newList)
             return {
                 ...state,
-                triviaList: state.triviaList.concat("meow")
+                triviaList: state.triviaList.concat(newList)
             }    
         default:
             return state;

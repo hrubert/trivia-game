@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 import Container from "./Container"
-import { actionName } from "../actions/index";
+import { fetchData } from "../actions/index";
 
 const mapStateToProps = (state) => {
   return {
-    default: state.default
+    triviaList: state.triviaList
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onActionName: (data) => dispatch(actionName(data))
+    onFetch: (data) => dispatch(fetchData(data))
   }
 }
 
