@@ -32,7 +32,6 @@ class QuestionCard extends React.Component {
     }
 
   render() {
-    console.log(this.props.triviaList)
     let triviaQuestion = []
     if (this.props.currentQuestion !== undefined) {
      triviaQuestion = (
@@ -42,20 +41,30 @@ class QuestionCard extends React.Component {
                 Question {this.props.questionNum + 1}
                 </Typography>
                 <Typography variant="headline" component="h2">
-                {this.props.currentQuestion.question.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°')}
+                {this.props.currentQuestion.question.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&')}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button variant="outlined" >
+                <Button
+                    onClick={() => this.props.handleCorrect(this.props.questionNum)}
+                    variant="outlined" >
                     A. {this.props.currentQuestion.correct_answer}
                 </Button>
-                <Button variant="outlined" >
+                <Button 
+                    variant="outlined" 
+                    onClick={() => this.props.handleWrong(this.props.questionNum)}
+                    >
                     B. {this.props.currentQuestion.incorrect_answers[0]}
                 </Button>
-                <Button variant="outlined" >
+                <Button variant="outlined"
+                    onClick={() => this.props.handleWrong(this.props.questionNum)}
+                    >
                     C. {this.props.currentQuestion.incorrect_answers[1]}
                 </Button>
-                <Button variant="outlined" >
+                <Button 
+                    variant="outlined"
+                    onClick={() => this.props.handleWrong(this.props.questionNum)}                    
+                    >
                     D. {this.props.currentQuestion.incorrect_answers[2]}
                 </Button>
             </CardActions>
