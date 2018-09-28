@@ -8,10 +8,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import ContactPhone from '@material-ui/icons/ContactPhone'
-import InsertChart from '@material-ui/icons/InsertChart'
-import Tonality from '@material-ui/icons/Tonality'
-import $ from 'jquery'
+import InsertChart from '@material-ui/icons/InsertChart';
+import Tonality from '@material-ui/icons/Tonality';
+import $ from 'jquery';
+import AlertDialogue from './AlertDialogue';
 
 
 const styles = {
@@ -76,7 +76,7 @@ class QuestionCard extends React.Component {
     if (this.props.currentQuestion !== undefined) {
         
         if (this.props.phoneAFriend) {
-            var friendButton = <IconButton className="" aria-label="Phone A Friend"><ContactPhone /></IconButton>
+            var friendButton = <AlertDialogue currentQuestion={this.props.questionNum} answer={this.props.currentQuestion.correct_answer}/>
         } else {
             var friendButton = '';
         }
@@ -110,7 +110,7 @@ class QuestionCard extends React.Component {
                 Question {this.props.questionNum + 1}
                 </Typography>
                 <Typography variant="headline" component="h2">
-                {this.props.currentQuestion.question.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó')}
+                {this.props.currentQuestion.question.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-')}
                 </Typography>
             </CardContent>
             <CardActions>
@@ -119,27 +119,27 @@ class QuestionCard extends React.Component {
                     variant="outlined" 
                     ref={answerChoices[0].ref}
                     >
-                    A. {answerChoices[0].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó')}
+                    A. {answerChoices[0].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-')}
                 </Button>
                 <Button 
                     variant="outlined"  
                     onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[1].correct, canUseFiftyFifty)}
                     ref={answerChoices[1].ref}                    
                     >
-                    B. {answerChoices[1].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó')}
+                    B. {answerChoices[1].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-')}
                 </Button>
                 <Button variant="outlined"
                     onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[2].correct, canUseFiftyFifty)}
                     ref={answerChoices[2].ref}                    
                     >
-                    C. {answerChoices[2].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó')}
+                    C. {answerChoices[2].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-')}
                 </Button>
                 <Button 
                     variant="outlined"
                     onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[3].correct, canUseFiftyFifty)}
                     ref={answerChoices[3].ref}                                         
                     >
-                    D. {answerChoices[3].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó')}
+                    D. {answerChoices[3].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-')}
                 </Button>
             </CardActions>
             </Card>
@@ -147,7 +147,8 @@ class QuestionCard extends React.Component {
     }
   return (
       <div>
-        {triviaQuestion}          
+        {triviaQuestion}    
+        
       </div>
     );
     }
