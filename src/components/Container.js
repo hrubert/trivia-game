@@ -28,6 +28,9 @@ class Container extends Component {
                     currentQuestion={this.props.triviaList[this.props.currentQuestion]}
                     handleAnswer={this.props.onAnswer}
                     handleWrong={this.props.onWrong}
+                    phoneAFriend={this.props.phoneAFriend}
+                    fiftyFifty={this.props.fiftyFifty}
+                    askTheAud={this.props.askTheAud}
                     />
                 <CurrentMoney questionNum={this.props.currentQuestion}/>
                 <HighScores highScoreList ={this.props.highScores} />

@@ -5,10 +5,11 @@ export const fetchData = data => ({
     data: data
 })
 
-export const answer = (num, correct) => ({
+export const answer = (num, correct, fiftyFifty) => ({
     type: 'ANSWER',
     num: num,
-    correct: correct
+    correct: correct,
+    fiftyFifty: fiftyFifty
 })
 
 export const wrong = num => ({

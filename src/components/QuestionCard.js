@@ -32,26 +32,26 @@ const styles = {
   },
 };
 
+var canUseFiftyFifty;
+
+
 class QuestionCard extends React.Component {
 //   const { classes } = props;
     constructor(props) {
         super(props);
     }
-    // componentDidMount() {
-    //     this.el = $(this.el)
-    //     $("#phoneAFriend").click(function() {
-    //         $("correct='false'").hide()
-    //         console.log('clicked')
-    //     });
-    // }
+
+
     handleToggle = () => {
-    const el = findDOMNode(this.refs.toggle);
-    $(el).slideToggle();
-    const el2 = findDOMNode(this.refs.toggle2);
-    $(el2).slideToggle();
+        const el = findDOMNode(this.refs.toggle);
+        $(el).slideToggle();
+        const el2 = findDOMNode(this.refs.toggle2);
+        $(el2).slideToggle();
+        canUseFiftyFifty = false;
     };
 
   render() {
+    canUseFiftyFifty = this.props.fiftyFifty
     let triviaQuestion = []
 
     function shuffle(array) {
@@ -74,6 +74,25 @@ class QuestionCard extends React.Component {
       }
     
     if (this.props.currentQuestion !== undefined) {
+        
+        if (this.props.phoneAFriend) {
+            var friendButton = <IconButton className="" aria-label="Phone A Friend"><ContactPhone /></IconButton>
+        } else {
+            var friendButton = '';
+        }
+
+        if (this.props.fiftyFifty) {
+            var fiftyButton = <IconButton aria-label="50-50" onClick={this.handleToggle}><Tonality /></IconButton>
+        } else {
+            var fiftyButton = '';
+        }
+
+        if (this.props.askTheAud) {
+            var askButton = <IconButton  aria-label="Poll The Audience"><InsertChart /></IconButton>
+        } else {
+            var askButton = '';
+        }
+
 
         let answerChoices = shuffle([{answer: this.props.currentQuestion.correct_answer, correct: true, ref: ''},
             {answer: this.props.currentQuestion.incorrect_answers[0], correct: false, ref: 'toggle'},
@@ -83,50 +102,44 @@ class QuestionCard extends React.Component {
             <Card key={this.props.questionNum}>
             <CardContent>
                 <div>
-                    <IconButton className="" aria-label="Phone A Friend">
-                        <ContactPhone />
-                    </IconButton>
-                    <IconButton aria-label="50-50" onClick={this.handleToggle}>
-                        <Tonality />
-                    </IconButton>
-                    <IconButton  aria-label="Poll The Audience">
-                        <InsertChart />
-                    </IconButton>
+                    {friendButton}
+                    {fiftyButton}
+                    {askButton}
                 </div>
                 <Typography color="textSecondary">
                 Question {this.props.questionNum + 1}
                 </Typography>
                 <Typography variant="headline" component="h2">
-                {this.props.currentQuestion.question.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'')}
+                {this.props.currentQuestion.question.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó')}
                 </Typography>
             </CardContent>
             <CardActions>
                 <Button
-                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[0].correct)}
+                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[0].correct, canUseFiftyFifty)}
                     variant="outlined" 
                     ref={answerChoices[0].ref}
                     >
-                    A. {answerChoices[0].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'')}
+                    A. {answerChoices[0].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó')}
                 </Button>
                 <Button 
-                    variant="outlined" 
-                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[1].correct)}
+                    variant="outlined"  
+                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[1].correct, canUseFiftyFifty)}
                     ref={answerChoices[1].ref}                    
                     >
-                    B. {answerChoices[1].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'')}
+                    B. {answerChoices[1].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó')}
                 </Button>
                 <Button variant="outlined"
-                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[2].correct)}
+                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[2].correct, canUseFiftyFifty)}
                     ref={answerChoices[2].ref}                    
                     >
-                    C. {answerChoices[2].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'')}
+                    C. {answerChoices[2].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó')}
                 </Button>
                 <Button 
                     variant="outlined"
-                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[3].correct)}
+                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[3].correct, canUseFiftyFifty)}
                     ref={answerChoices[3].ref}                                         
                     >
-                    D. {answerChoices[3].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü')}
+                    D. {answerChoices[3].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó')}
                 </Button>
             </CardActions>
             </Card>
