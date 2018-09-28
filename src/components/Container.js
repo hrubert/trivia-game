@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import LoginAppBar from './AppBar';
 import QuestionCard from './QuestionCard';
 import CurrentMoney from './CurrentMoney';
-
+import HighScores from './HighScores'
+    
 class Container extends Component {
+    
+    
     render() {
         if(this.props.updateTrivia === true) {
             fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
@@ -15,6 +18,7 @@ class Container extends Component {
             fetch('https://opentdb.com/api.php?amount=5&difficulty=hard&type=multiple')
             .then((response => response.json()))
             .then(response => this.props.onFetch(response))
+
         }
 
         return (
@@ -26,6 +30,7 @@ class Container extends Component {
                     handleWrong={this.props.onWrong}
                     />
                 <CurrentMoney questionNum={this.props.currentQuestion}/>
+                <HighScores highScoreList ={this.props.highScores} />
             </div>
         );
     }

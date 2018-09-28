@@ -6,7 +6,8 @@ const mapStateToProps = (state) => {
   return {
     triviaList: state.triviaList,
     currentQuestion: state.currentQuestion,
-    updateTrivia: state.updateTrivia
+    updateTrivia: state.updateTrivia,
+    highScores: state.highScores
   }
 };
 
