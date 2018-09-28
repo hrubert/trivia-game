@@ -32,7 +32,7 @@ const styles = {
   },
 };
 
-var canUseFiftyFifty;
+var canUseFiftyFifty
 
 
 class QuestionCard extends React.Component {
@@ -51,7 +51,7 @@ class QuestionCard extends React.Component {
     };
 
   render() {
-    canUseFiftyFifty = this.props.fiftyFifty
+    canUseFiftyFifty = this.props.fiftyFifty;
     let triviaQuestion = []
 
     function shuffle(array) {
@@ -115,7 +115,7 @@ class QuestionCard extends React.Component {
             </CardContent>
             <CardActions>
                 <Button
-                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[0].correct, canUseFiftyFifty)}
+                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[0].correct, canUseFiftyFifty, canUsePhoneAFriend)}
                     variant="outlined" 
                     ref={answerChoices[0].ref}
                     >
@@ -123,20 +123,20 @@ class QuestionCard extends React.Component {
                 </Button>
                 <Button 
                     variant="outlined"  
-                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[1].correct, canUseFiftyFifty)}
+                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[1].correct, canUseFiftyFifty, canUsePhoneAFriend)}
                     ref={answerChoices[1].ref}                    
                     >
                     B. {answerChoices[1].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-')}
                 </Button>
                 <Button variant="outlined"
-                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[2].correct, canUseFiftyFifty)}
+                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[2].correct, canUseFiftyFifty, canUsePhoneAFriend)}
                     ref={answerChoices[2].ref}                    
                     >
                     C. {answerChoices[2].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-')}
                 </Button>
                 <Button 
                     variant="outlined"
-                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[3].correct, canUseFiftyFifty)}
+                    onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[3].correct, canUseFiftyFifty, canUsePhoneAFriend)}
                     ref={answerChoices[3].ref}                                         
                     >
                     D. {answerChoices[3].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-')}

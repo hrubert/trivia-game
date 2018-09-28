@@ -136,6 +136,8 @@ const friendArray = [
     'William'
 ];
 
+var canUsePhoneAFriend;
+
 class AlertDialog extends React.Component {
   state = {
     open: false,
@@ -171,7 +173,7 @@ class AlertDialog extends React.Component {
 
   num = Math.floor(Math.random() * friendArray.length)
   render() {
-    console.log(this.props.currentQuestion)
+    canUsePhoneAFriend = this.props.phoneAFriend;
     let ans = this.chooseResponse(this.props.currentQuestion);
     return (
       <div style={{display: "inline-block"}}>
