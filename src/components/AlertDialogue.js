@@ -31,13 +31,13 @@ class AlertDialog extends React.Component {
     if (questionNum < 5) {
         return goodAns
     } else if (questionNum < 10 ) {
-        if (Math.floor(Math.random() * 3) == 0) {
+        if (Math.floor(Math.random() * 3) === 0) {
             return badAns
         } else {
             return goodAns
         }
     } else {
-        if (Math.floor(Math.random() * 3) == 0) {
+        if (Math.floor(Math.random() * 3) === 0) {
             return goodAns
         } else {
             return badAns

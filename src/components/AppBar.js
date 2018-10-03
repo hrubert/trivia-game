@@ -5,8 +5,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 
 const styles = {
   root: {
@@ -19,6 +17,10 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
+  link: {
+    textDecoration: "none",
+    color: "white"
+  }
 };
 
 function LoginAppBar(props) {
@@ -27,13 +29,12 @@ function LoginAppBar(props) {
     <div className={classes.root}>
       <AppBar position="static" style={{backgroundColor: "black"}}>
         <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
           <Typography variant="title" color="inherit" className={classes.grow}>
             Who Wants To Be A Millionaire?
           </Typography>
-          <Button color="inherit">Leaderboard</Button>
+          <Button color="inherit"><a style={styles.link} href="/">Home</a></Button>
+          <Button color="inherit"><a style={styles.link} href="/play">Play</a></Button>
+          <Button color="inherit"><a style={styles.link} href="/highscores">High Scores</a></Button>         
         </Toolbar>
       </AppBar>
     </div>

@@ -1,26 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
-import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
+import CardContent from '@material-ui/core/CardContent';
+import Card from '@material-ui/core/Card';
 import firebase from './firebase'
 
-var db = firebase.firestore();
-
-db.settings({
-    timestampsInSnapshots: true
-});
-
-db.collection('scores').doc().set({
-  name: "Levi",
-  score: 100
-});
-
+// eslint-disable-next-line
 const styles = theme => ({
   root: {
     width: '100%',
@@ -29,19 +18,20 @@ const styles = theme => ({
   },
 });
 
+let highScoresList = [];
+
 class HighScores extends React.Component {
  
   render() {
     const { classes } = this.props;
-    let highScores = db.collection("scores").orderBy("score").limit(50);
-    console.log(highScores)
     return (
-      <div className={classes.root}>
+    <Card>
+      <CardContent>
       <Typography variant="headline" component="h2">
             High Scores:
         </Typography>
         <List>
-          {this.props.highScoreList.map(highScore => (
+          {highScoresList.map(highScore => (
             <ListItem key={highScore.name} dense button className={classes.listItem}>
               <ListItemText primary={highScore.name} />
               <ListItemSecondaryAction>
@@ -51,7 +41,8 @@ class HighScores extends React.Component {
             </ListItem>
           ))}
         </List>
-      </div>
+        </CardContent>
+    </Card>    
     );
   }
 }
@@ -60,4 +51,4 @@ HighScores.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(HighScores);
+export default HighScores

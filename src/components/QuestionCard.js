@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -13,7 +11,7 @@ import $ from 'jquery';
 import AlertDialogue from './AlertDialogue';
 import AlertDialoguePoll from './AlertDialoguePoll';
 
-
+// eslint-disable-next-line
 const styles = {
   card: {
     minWidth: 275,
@@ -36,10 +34,6 @@ var canUseFiftyFifty, canUsePhoneAFriend, canUsePoll;
 
 
 class QuestionCard extends React.Component {
-//   const { classes } = props;
-    constructor(props) {
-        super(props);
-    }
 
     handleToggle = () => {
         const el = findDOMNode(this.refs.toggle);
@@ -87,18 +81,21 @@ class QuestionCard extends React.Component {
         if (this.props.phoneAFriend) {
             var friendButton = <AlertDialogue currentQuestion={this.props.questionNum} answer={this.props.currentQuestion.correct_answer} onPhone={this.handlePhone.bind(this)}/>
         } else {
+            // eslint-disable-next-line
             var friendButton = '';
         }
 
         if (this.props.fiftyFifty) {
             var fiftyButton = <IconButton aria-label="50-50" onClick={this.handleToggle}><Tonality /></IconButton>
         } else {
+            // eslint-disable-next-line
             var fiftyButton = '';
         }
 
         if (this.props.askTheAud) {
             var askButton = <AlertDialoguePoll currentQuestion={this.props.questionNum} answer={this.props.currentQuestion.correct_answer} wrongAns={this.props.currentQuestion.incorrect_answers}onPoll={this.handlePoll.bind(this)}/>
         } else {
+            // eslint-disable-next-line
             var askButton = '';
         }
 
@@ -163,8 +160,5 @@ class QuestionCard extends React.Component {
     }
 }
 
-// QuestionCard.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
 
 export default (QuestionCard);

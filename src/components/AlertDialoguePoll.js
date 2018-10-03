@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import InsertChart from '@material-ui/icons/InsertChart';
@@ -53,13 +52,13 @@ class AlertDialog extends React.Component {
     if (questionNum < 5) {
         return goodAns
     } else if (questionNum < 10 ) {
-        if (Math.floor(Math.random() * 3) == 0) {
+        if (Math.floor(Math.random() * 3) === 0) {
             return badAns
         } else {
             return goodAns
         }
     } else {
-        if (Math.floor(Math.random() * 3) == 0) {
+        if (Math.floor(Math.random() * 3) === 0) {
             return goodAns
         } else {
             return badAns

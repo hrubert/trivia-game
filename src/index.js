@@ -5,9 +5,9 @@ import { Provider } from "react-redux";
 import { createStore } from "redux"
 import { reducer } from "./reducers/reducer"
 import 'normalize.css';
-
-import App from './components/App';
+import {BrowserRouter} from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
+import Container from './components/Container';
 
 const store = createStore(reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
@@ -15,6 +15,6 @@ const store = createStore(reducer,
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <BrowserRouter><Container /></BrowserRouter>
     </Provider>, document.getElementById('root'));
 registerServiceWorker();
