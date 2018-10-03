@@ -7,7 +7,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
-import firebase from './firebase'
 
 // eslint-disable-next-line
 const styles = theme => ({
@@ -18,12 +17,8 @@ const styles = theme => ({
   },
 });
 
-let highScoresList = [];
 
-class HighScores extends React.Component {
- 
-  render() {
-    const { classes } = this.props;
+function HighScores(props) {
     return (
     <Card>
       <CardContent>
@@ -31,8 +26,9 @@ class HighScores extends React.Component {
             High Scores:
         </Typography>
         <List>
-          {highScoresList.map(highScore => (
-            <ListItem key={highScore.name} dense button className={classes.listItem}>
+          {props.scores.map(highScore => (
+            <ListItem key={props.scores.indexOf(highScore)} dense button>
+              <ListItemText primary={props.scores.indexOf(highScore) + 1}></ListItemText>
               <ListItemText primary={highScore.name} />
               <ListItemSecondaryAction>
                 ${highScore.score}
@@ -43,12 +39,8 @@ class HighScores extends React.Component {
         </List>
         </CardContent>
     </Card>    
-    );
-  }
+  );
 }
 
-HighScores.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default HighScores

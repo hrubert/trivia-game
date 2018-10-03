@@ -1,3 +1,13 @@
+import firebase from '../components/firebase';
+
+// Initialize Cloud Firestore through Firebase
+var db = firebase.firestore();
+
+// Disable deprecated features
+db.settings({
+  timestampsInSnapshots: true
+});
+
 export function reducer(state, action) {
     const moneyArr = [0, 100, 200, 300, 500, 1000,
                     2000, 4000, 8000, 16000, 32000,
@@ -34,6 +44,10 @@ export function reducer(state, action) {
                     askTheAud: action.askTheAud
                 }
             } else {
+                db.collection("scores").add({
+                    name: state.name,
+                    score: moneyArr[state.currentQuestion]
+                })
                 return {
                     ...state,
                     triviaList: [],
