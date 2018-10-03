@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Container from "./Container"
-import { fetchData, answer, nameEnter } from "../actions/index";
+import { fetchData, answer, nameEnter, newScores} from "../actions/index";
 
 const mapStateToProps = (state) => {
   return {
@@ -17,6 +17,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    setScores: (scoreList) => dispatch(newScores(scoreList)),    
     onFetch: (data) => dispatch(fetchData(data)),
     onAnswer: (num, ans, correct, fiftyFifty, phoneAFriend, askTheAud) => dispatch(answer(num, ans, correct, fiftyFifty, phoneAFriend, askTheAud)),
     onName: (name) => dispatch(nameEnter(name))

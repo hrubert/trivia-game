@@ -51,6 +51,12 @@ export function reducer(state, action) {
                 ...state,
                 name: action.name
             }
+        
+        case 'UPDATE_SCORES':
+            return {
+                ...state,
+                highScores: action.scoreList
+            }
             
         default:
             return state;

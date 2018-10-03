@@ -3,14 +3,36 @@ import LoginAppBar from './AppBar';
 import QuestionCard from './QuestionCard';
 import CurrentMoney from './CurrentMoney';
 import HighScores from './HighScores'
-    
+import firebase from './firebase'
+
+
 class Container extends Component {
+
+    
      
     componentWillMount() {
+        let scores = [];
+        
         this.props.onName(prompt("What name would you like to use for high scores?", "Anonymous"))
+        
+        firebase.database().ref('scores/').orderByChild("score").once('value', function (snapshot) {
+            scores = snapshot.val();
+            console.log(scores)
+        });
+        this.props.setScores(scores);   
+        console.log(scores)     
     }
     
     render() {
+        firebase.database().ref("scores/").push({
+            name: "Skittles",
+            score: 50
+        })
+        
+        
+        
+
+
         if(this.props.updateTrivia === true) {
             fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
             .then((response => response.json()))

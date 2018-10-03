@@ -19,3 +19,7 @@ export const nameEnter = name => ({
     name: name
 })
 
+export const newScores = scoreList => ({
+    type: "UPDATE_SCORES",
+    scoreList: scoreList
+})

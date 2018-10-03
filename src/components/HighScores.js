@@ -8,18 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import firebase from './firebase'
 
-var db = firebase.firestore();
-
-db.settings({
-    timestampsInSnapshots: true
-});
-
-db.collection('scores').doc().set({
-  name: "Levi",
-  score: 100
-});
 
 const styles = theme => ({
   root: {
@@ -33,8 +22,8 @@ class HighScores extends React.Component {
  
   render() {
     const { classes } = this.props;
-    let highScores = db.collection("scores").orderBy("score").limit(50);
-    console.log(highScores)
+    // let highScores = db.collection("scores").orderBy("score").limit(50);
+    // console.log(highScores)
     return (
       <div className={classes.root}>
       <Typography variant="headline" component="h2">
