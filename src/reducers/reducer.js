@@ -29,7 +29,9 @@ export function reducer(state, action) {
                 return {
                     ...state,
                     currentQuestion: state.currentQuestion +1,
-                    fiftyFifty: action.fiftyFifty
+                    fiftyFifty: action.fiftyFifty,
+                    phoneAFriend: action.phoneAFriend,
+                    askTheAud: action.askTheAud
                 }
             } else {
                 return {
@@ -38,7 +40,9 @@ export function reducer(state, action) {
                     updateTrivia: true,
                     highScores: state.highScores.concat({name: 'Tracy', score: moneyArr[state.currentQuestion]}),
                     currentQuestion: 0,
-                    fiftyFifty: true
+                    fiftyFifty: true,
+                    phoneAFriend: true,
+                    askTheAud: true
                 }
             }
             

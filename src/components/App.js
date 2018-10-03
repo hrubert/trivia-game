@@ -17,7 +17,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onFetch: (data) => dispatch(fetchData(data)),
-    onAnswer: (num, ans, correct, fiftyFifty) => dispatch(answer(num, ans, correct, fiftyFifty)),
+    onAnswer: (num, ans, correct, fiftyFifty, phoneAFriend, askTheAud) => dispatch(answer(num, ans, correct, fiftyFifty, phoneAFriend, askTheAud)),
     onWrong: (num) => dispatch(wrong(num))
   }
 }

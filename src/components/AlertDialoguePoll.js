@@ -6,8 +6,30 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
-import ContactPhone from '@material-ui/icons/ContactPhone';
-import friendArray from './friendArray'
+import InsertChart from '@material-ui/icons/InsertChart';
+import ReactChartkick, { PieChart } from 'react-chartkick'
+import Chart from 'chart.js'
+
+ReactChartkick.addAdapter(Chart)
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
 
 class AlertDialog extends React.Component {
   constructor(props) {
@@ -18,7 +40,7 @@ class AlertDialog extends React.Component {
 
   handleClickOpen = () => {
     this.setState({ open: true });
-    this.props.onPhone();
+    this.props.onPoll();
   };
 
   handleClose = () => {
@@ -26,8 +48,8 @@ class AlertDialog extends React.Component {
   };
 
   chooseResponse = (questionNum) => {
-    let goodAns = "'I got this', your friend says triumphantly. 'I was just reading about this last week. The answer is " + this.props.answer + "'.";
-    let badAns = "There is a long silence on the other end of the phone line. 'Sorry, I don't even understand the question,' your friend replies.";
+    let goodAns = <PieChart data={shuffle([[this.props.answer, 64], [this.props.wrongAns[0], 3], [this.props.wrongAns[1], 10], [this.props.wrongAns[2], 23]])} />;
+    let badAns = <PieChart data={shuffle([[this.props.answer, 25], [this.props.wrongAns[0], 24], [this.props.wrongAns[1], 31], [this.props.wrongAns[2], 20]])} />;
     if (questionNum < 5) {
         return goodAns
     } else if (questionNum < 10 ) {
@@ -45,28 +67,24 @@ class AlertDialog extends React.Component {
     }
   }
 
-  num = Math.floor(Math.random() * friendArray.length)
   render() {
-    console.log(this.props)    
     let ans = this.chooseResponse(this.props.currentQuestion);
     return (
       <div style={{display: "inline-block"}}>
-        <IconButton onClick={this.handleClickOpen} className="" aria-label="Phone A Friend"><ContactPhone /></IconButton>
+        <IconButton onClick={this.handleClickOpen} className="" aria-label="Ask The Audience"><InsertChart /></IconButton>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">{"Phone a friend:"}</DialogTitle>
+          <DialogTitle id="alert-dialog-title">{"Ask The Audience:"}</DialogTitle>
           <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              You call {friendArray[this.num]} and repeat the question. {ans}
-            </DialogContentText>
+            {ans}
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary" autoFocus>
-              End Call
+              Close Poll
             </Button>
           </DialogActions>
         </Dialog>
