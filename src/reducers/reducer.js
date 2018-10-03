@@ -1,5 +1,4 @@
 export function reducer(state, action) {
-
     const moneyArr = [0, 100, 200, 300, 500, 1000,
                     2000, 4000, 8000, 16000, 32000,
                     64000, 125000, 250000, 500000, 1000000]
@@ -12,7 +11,8 @@ export function reducer(state, action) {
             highScores: [],
             phoneAFriend: true,
             fiftyFifty: true,
-            askTheAud: true
+            askTheAud: true,
+            name: 'Anonymous'
         }
     }
 
@@ -38,7 +38,7 @@ export function reducer(state, action) {
                     ...state,
                     triviaList: [],
                     updateTrivia: true,
-                    highScores: state.highScores.concat({name: 'Tracy', score: moneyArr[state.currentQuestion]}),
+                    highScores: state.highScores.concat({name: state.name, score: moneyArr[state.currentQuestion]}),
                     currentQuestion: 0,
                     fiftyFifty: true,
                     phoneAFriend: true,
@@ -46,19 +46,12 @@ export function reducer(state, action) {
                 }
             }
             
-            // notification of correct
-            // money increases
-        // case 'WRONG':
-        //     return {
-        //         ...state,
-        //         currentQuestion: 0,
-        //         triviaList: [],
-        //         updateTrivia: true
-        //     }
+        case 'ENTER_NAME':
+            return {
+                ...state,
+                name: action.name
+            }
             
-            // should say the correct ans
-            // money resets. Questions reset
-            // question number resets
         default:
             return state;
     }

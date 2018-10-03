@@ -14,8 +14,8 @@ export const answer = (num, correct, fiftyFifty, phoneAFriend, askTheAud) => ({
     askTheAud: askTheAud
 })
 
-export const wrong = num => ({
-    type: 'WRONG',
-    num: num
+export const nameEnter = name => ({
+    type: 'ENTER_NAME',
+    name: name
 })
 

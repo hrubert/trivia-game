@@ -5,7 +5,10 @@ import CurrentMoney from './CurrentMoney';
 import HighScores from './HighScores'
     
 class Container extends Component {
-    
+     
+    componentWillMount() {
+        this.props.onName(prompt("What name would you like to use for high scores?", "Anonymous"))
+    }
     
     render() {
         if(this.props.updateTrivia === true) {

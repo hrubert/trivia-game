@@ -47,7 +47,6 @@ class AlertDialog extends React.Component {
 
   num = Math.floor(Math.random() * friendArray.length)
   render() {
-    console.log(this.props)    
     let ans = this.chooseResponse(this.props.currentQuestion);
     return (
       <div style={{display: "inline-block"}}>
