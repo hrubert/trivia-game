@@ -18,10 +18,9 @@ const styles = {
   card: {
     minWidth: 275,
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
+  button: {
+    width: '50%',
+    borderRadius: '10em'
   },
   title: {
     marginBottom: 16,
@@ -109,20 +108,21 @@ class QuestionCard extends React.Component {
         triviaQuestion = (
             <Card key={this.props.questionNum}>
             <CardContent>
-                <div>
+                <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
                     {friendButton}
                     {fiftyButton}
                     {askButton}
                 </div>
-                <Typography color="textSecondary">
+                <Typography color="textSecondary" style={{marginTop: '2.5em'}}>
                 Question {this.props.questionNum + 1}
                 </Typography>
                 <Typography variant="headline" component="h2">
                 {this.props.currentQuestion.question.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
                 </Typography>
             </CardContent>
-            <CardActions>
+            <CardActions >
                 <Button
+                    style={styles.button}
                     onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[0].correct, canUseFiftyFifty, canUsePhoneAFriend, canUsePoll)}
                     variant="outlined" 
                     ref={answerChoices[0].ref}
@@ -130,26 +130,31 @@ class QuestionCard extends React.Component {
                     A. {answerChoices[0].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
                 </Button>
                 <Button 
+                    style={styles.button}
                     variant="outlined"  
                     onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[1].correct, canUseFiftyFifty, canUsePhoneAFriend, canUsePoll)}
                     ref={answerChoices[1].ref}                    
                     >
                     B. {answerChoices[1].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
                 </Button>
+            </CardActions>   
+            <CardActions >                     
                 <Button variant="outlined"
+                    style={styles.button}                    
                     onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[2].correct, canUseFiftyFifty, canUsePhoneAFriend, canUsePoll)}
                     ref={answerChoices[2].ref}                    
                     >
                     C. {answerChoices[2].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
                 </Button>
                 <Button 
+                    style={styles.button}                    
                     variant="outlined"
                     onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[3].correct, canUseFiftyFifty, canUsePhoneAFriend, canUsePoll)}
                     ref={answerChoices[3].ref}                                         
                     >
                     D. {answerChoices[3].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
                 </Button>
-            </CardActions>
+            </CardActions>               
             </Card>
         )
     }

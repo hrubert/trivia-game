@@ -29,6 +29,8 @@ function HighScores(props) {
             <ListItem key={props.scores.indexOf(highScore)} dense button>
               <ListItemText primary={props.scores.indexOf(highScore) + 1}></ListItemText>
               <ListItemText primary={highScore.name} />
+              {/* <ListItemText primary={'$' + highScore.score} />> */}
+              
               <ListItemSecondaryAction>
                 ${highScore.score}
                 
