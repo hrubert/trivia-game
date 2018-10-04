@@ -6,6 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import InsertChart from '@material-ui/icons/InsertChart';
+import Tooltip from '@material-ui/core/Tooltip';
 import ReactChartkick, { PieChart } from 'react-chartkick'
 import Chart from 'chart.js'
 
@@ -47,8 +48,8 @@ class AlertDialog extends React.Component {
   };
 
   chooseResponse = (questionNum) => {
-    let goodAns = <PieChart data={shuffle([[this.props.answer, 64], [this.props.wrongAns[0], 3], [this.props.wrongAns[1], 10], [this.props.wrongAns[2], 23]])} />;
-    let badAns = <PieChart data={shuffle([[this.props.answer, 25], [this.props.wrongAns[0], 24], [this.props.wrongAns[1], 31], [this.props.wrongAns[2], 20]])} />;
+    let goodAns = <PieChart data={shuffle([[this.props.answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"'), 64], [this.props.wrongAns[0].replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"'), 3], [this.props.wrongAns[1].replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"'), 10], [this.props.wrongAns[2].replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"'), 23]])} />;
+    let badAns = <PieChart data={shuffle([[this.props.answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"'), 25], [this.props.wrongAns[0].replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"'), 24], [this.props.wrongAns[1].replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"'), 31], [this.props.wrongAns[2].replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"'), 20]])} />;
     if (questionNum < 5) {
         return goodAns
     } else if (questionNum < 10 ) {
@@ -70,7 +71,7 @@ class AlertDialog extends React.Component {
     let ans = this.chooseResponse(this.props.currentQuestion);
     return (
       <div style={{display: "inline-block"}}>
-        <IconButton onClick={this.handleClickOpen} className="" aria-label="Ask The Audience"><InsertChart /></IconButton>
+        <Tooltip title="Ask the Audience"><IconButton onClick={this.handleClickOpen} className="" aria-label="Ask The Audience"><InsertChart /></IconButton></Tooltip>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}

@@ -10,6 +10,8 @@ import Tonality from '@material-ui/icons/Tonality';
 import $ from 'jquery';
 import AlertDialogue from './AlertDialogue';
 import AlertDialoguePoll from './AlertDialoguePoll';
+import Tooltip from '@material-ui/core/Tooltip';
+
 
 // eslint-disable-next-line
 const styles = {
@@ -86,7 +88,7 @@ class QuestionCard extends React.Component {
         }
 
         if (this.props.fiftyFifty) {
-            var fiftyButton = <IconButton aria-label="50-50" onClick={this.handleToggle}><Tonality /></IconButton>
+            var fiftyButton = <Tooltip title="Fifty-fifty"><IconButton aria-label="50-50" onClick={this.handleToggle}><Tonality /></IconButton></Tooltip>
         } else {
             // eslint-disable-next-line
             var fiftyButton = '';
@@ -116,7 +118,7 @@ class QuestionCard extends React.Component {
                 Question {this.props.questionNum + 1}
                 </Typography>
                 <Typography variant="headline" component="h2">
-                {this.props.currentQuestion.question.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-')}
+                {this.props.currentQuestion.question.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
                 </Typography>
             </CardContent>
             <CardActions>
@@ -125,27 +127,27 @@ class QuestionCard extends React.Component {
                     variant="outlined" 
                     ref={answerChoices[0].ref}
                     >
-                    A. {answerChoices[0].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-')}
+                    A. {answerChoices[0].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
                 </Button>
                 <Button 
                     variant="outlined"  
                     onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[1].correct, canUseFiftyFifty, canUsePhoneAFriend, canUsePoll)}
                     ref={answerChoices[1].ref}                    
                     >
-                    B. {answerChoices[1].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-')}
+                    B. {answerChoices[1].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
                 </Button>
                 <Button variant="outlined"
                     onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[2].correct, canUseFiftyFifty, canUsePhoneAFriend, canUsePoll)}
                     ref={answerChoices[2].ref}                    
                     >
-                    C. {answerChoices[2].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-')}
+                    C. {answerChoices[2].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
                 </Button>
                 <Button 
                     variant="outlined"
                     onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[3].correct, canUseFiftyFifty, canUsePhoneAFriend, canUsePoll)}
                     ref={answerChoices[3].ref}                                         
                     >
-                    D. {answerChoices[3].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-')}
+                    D. {answerChoices[3].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
                 </Button>
             </CardActions>
             </Card>

@@ -7,6 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import ContactPhone from '@material-ui/icons/ContactPhone';
+import Tooltip from '@material-ui/core/Tooltip';
 import friendArray from './friendArray'
 
 class AlertDialog extends React.Component {
@@ -26,7 +27,7 @@ class AlertDialog extends React.Component {
   };
 
   chooseResponse = (questionNum) => {
-    let goodAns = "'I got this', your friend says triumphantly. 'I was just reading about this last week. The answer is " + this.props.answer + "'.";
+    let goodAns = "'I got this', your friend says triumphantly. 'I was just reading about this last week. The answer is " + this.props.answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"') + "'.";
     let badAns = "There is a long silence on the other end of the phone line. 'Sorry, I don't even understand the question,' your friend replies.";
     if (questionNum < 5) {
         return goodAns
@@ -50,7 +51,7 @@ class AlertDialog extends React.Component {
     let ans = this.chooseResponse(this.props.currentQuestion);
     return (
       <div style={{display: "inline-block"}}>
-        <IconButton onClick={this.handleClickOpen} className="" aria-label="Phone A Friend"><ContactPhone /></IconButton>
+        <Tooltip title="Phone a friend"><IconButton onClick={this.handleClickOpen} className="" aria-label="Phone A Friend"><ContactPhone /></IconButton></Tooltip>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
