@@ -21,19 +21,19 @@ function HighScores(props) {
     return (
     <Card>
       <CardContent>
-      <Typography variant="headline" component="h2">
-            High Scores:
-        </Typography>
-        <List>
+      <div>
+            <h2 style={{textAlign: 'center'}}>High Scores:</h2>
+        </div>
+        <List style={{maxWidth: '500px', margin: '0 auto'}}>
           {props.scores.map(highScore => (
             <ListItem key={props.scores.indexOf(highScore)} dense button>
               <ListItemText primary={props.scores.indexOf(highScore) + 1}></ListItemText>
               <ListItemText primary={highScore.name} />
-              {/* <ListItemText primary={'$' + highScore.score} />> */}
               
               <ListItemSecondaryAction>
-                ${highScore.score}
-                
+                <Typography variant="subheading" gutterBottom>
+                    ${highScore.score}                
+                </Typography>
               </ListItemSecondaryAction>
             </ListItem>
           ))}
