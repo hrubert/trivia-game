@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 import LoginAppBar from './AppBar';
-import HighScoresPage from './HighScoresPage'
-import Homepage from './homepage'
-import Body from './body'
+import HighScoresPage from './HighScoresPage';
+import Homepage from './homepage';
+import Body from './body';
     
 class Container extends Component {
     render() {

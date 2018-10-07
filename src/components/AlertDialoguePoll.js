@@ -71,7 +71,7 @@ class AlertDialog extends React.Component {
     let ans = this.chooseResponse(this.props.currentQuestion);
     return (
       <div style={{display: "inline-block"}}>
-        <Tooltip title="Ask the Audience"><IconButton onClick={this.handleClickOpen} className="" aria-label="Ask The Audience"><InsertChart /></IconButton></Tooltip>
+        <Tooltip title="Ask the Audience"><IconButton onClick={this.handleClickOpen} aria-label="Ask The Audience"><InsertChart style={{color: 'white'}}/></IconButton></Tooltip>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}

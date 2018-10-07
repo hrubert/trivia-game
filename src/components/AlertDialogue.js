@@ -51,7 +51,7 @@ class AlertDialog extends React.Component {
     let ans = this.chooseResponse(this.props.currentQuestion);
     return (
       <div style={{display: "inline-block"}}>
-        <Tooltip title="Phone a friend"><IconButton onClick={this.handleClickOpen} className="" aria-label="Phone A Friend"><ContactPhone /></IconButton></Tooltip>
+        <Tooltip title="Phone a friend"><IconButton onClick={this.handleClickOpen} aria-label="Phone A Friend"><ContactPhone style={{color: 'white'}}/></IconButton></Tooltip>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
