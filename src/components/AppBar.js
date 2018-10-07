@@ -34,7 +34,7 @@ function LoginAppBar(props) {
           </Typography>
           <Button color="inherit"><a style={styles.link} href="/">Home</a></Button>
           <Button color="inherit"><a style={styles.link} href="/play">Play</a></Button>
-          <Button color="inherit"><a style={styles.link} href="/highscores">High Scores</a></Button>         
+          <Button color="inherit"><a style={styles.link} href="/highscores">High Scores</a></Button>               
         </Toolbar>
       </AppBar>
     </div>

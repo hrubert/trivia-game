@@ -1,6 +1,5 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
-import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
@@ -11,16 +10,25 @@ import $ from 'jquery';
 import AlertDialogue from './AlertDialogue';
 import AlertDialoguePoll from './AlertDialoguePoll';
 import Tooltip from '@material-ui/core/Tooltip';
-
+import logo from './images/logo.png'
 
 // eslint-disable-next-line
 const styles = {
   card: {
     minWidth: 275,
   },
+  question: {
+    borderRadius: '5em',
+    backgroundColor: 'rgb(39, 20, 122)',
+    border: '3px solid rgb(195, 195, 186)',
+    color: 'white'
+  },
   button: {
     width: '50%',
-    borderRadius: '10em'
+    borderRadius: '5em',
+    backgroundColor: 'rgb(39, 20, 122)',
+    border: '3px solid rgb(195, 195, 186)',
+    color: 'white'
   },
   title: {
     marginBottom: 16,
@@ -28,6 +36,14 @@ const styles = {
   },
   pos: {
     marginBottom: 12,
+  },
+  image: {
+    width: '20%',
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    paddingTop: '.5rem',
+    paddingBottom: '.5rem'    
   },
 };
 
@@ -87,7 +103,7 @@ class QuestionCard extends React.Component {
         }
 
         if (this.props.fiftyFifty) {
-            var fiftyButton = <Tooltip title="Fifty-fifty"><IconButton aria-label="50-50" onClick={this.handleToggle}><Tonality /></IconButton></Tooltip>
+            var fiftyButton = <Tooltip title="Fifty-fifty"><IconButton aria-label="50-50" onClick={this.handleToggle}><Tonality style={{color: 'white'}}/></IconButton></Tooltip>
         } else {
             // eslint-disable-next-line
             var fiftyButton = '';
@@ -106,28 +122,32 @@ class QuestionCard extends React.Component {
             {answer: this.props.currentQuestion.incorrect_answers[1], correct: false, ref: 'toggle2'},
             {answer: this.props.currentQuestion.incorrect_answers[2], correct: false, ref: ''}])
         triviaQuestion = (
-            <Card key={this.props.questionNum}>
+            <div>
             <CardContent>
                 <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
-                    {friendButton}
                     {fiftyButton}
+                    {friendButton}
                     {askButton}
                 </div>
-                <Typography color="textSecondary" style={{marginTop: '2.5em'}}>
-                Question {this.props.questionNum + 1}
-                </Typography>
-                <Typography variant="headline" component="h2">
-                {this.props.currentQuestion.question.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
-                </Typography>
+                <div>
+                    <img src={logo} alt='logo' style={styles.image}/>
+                </div>
+                <div style={styles.question}>
+                    <Typography variant="headline" component="h2" style={{marginTop: '.5em', marginBottom: '.5em', color: 'white', textAlign: 'center'}}>
+                    <span style={{color: 'rgb(249, 149, 17)'}}>{this.props.questionNum + 1}:  &nbsp;</span>
+                    {this.props.currentQuestion.question.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
+                    </Typography>
+                </div>
             </CardContent>
             <CardActions >
                 <Button
                     style={styles.button}
                     onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[0].correct, canUseFiftyFifty, canUsePhoneAFriend, canUsePoll)}
                     variant="outlined" 
+                    // className="buttonBorder"
                     ref={answerChoices[0].ref}
                     >
-                    A. {answerChoices[0].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
+                    <span style={{color: 'rgb(249, 149, 17)'}}>A:  &nbsp;</span> {answerChoices[0].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
                 </Button>
                 <Button 
                     style={styles.button}
@@ -135,7 +155,7 @@ class QuestionCard extends React.Component {
                     onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[1].correct, canUseFiftyFifty, canUsePhoneAFriend, canUsePoll)}
                     ref={answerChoices[1].ref}                    
                     >
-                    B. {answerChoices[1].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
+                    <span style={{color: 'rgb(249, 149, 17)'}}>B:  &nbsp;</span> {answerChoices[1].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
                 </Button>
             </CardActions>   
             <CardActions >                     
@@ -144,7 +164,7 @@ class QuestionCard extends React.Component {
                     onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[2].correct, canUseFiftyFifty, canUsePhoneAFriend, canUsePoll)}
                     ref={answerChoices[2].ref}                    
                     >
-                    C. {answerChoices[2].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
+                    <span style={{color: 'rgb(249, 149, 17)'}}>C:  &nbsp;</span> {answerChoices[2].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
                 </Button>
                 <Button 
                     style={styles.button}                    
@@ -152,10 +172,10 @@ class QuestionCard extends React.Component {
                     onClick={() => this.props.handleAnswer(this.props.questionNum, answerChoices[3].correct, canUseFiftyFifty, canUsePhoneAFriend, canUsePoll)}
                     ref={answerChoices[3].ref}                                         
                     >
-                    D. {answerChoices[3].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
+                    <span style={{color: 'rgb(249, 149, 17)'}}>D:  &nbsp;</span> {answerChoices[3].answer.replace(/&quot;/g,'"').replace(/&#039;/g,'\'').replace(/&DEG;/g,'°').replace(/&amp;/g, '&').replace(/&eacute;/g,'é').replace(/&Uuml;/g, 'Ü').replace(/&rsquo;/g, '\'').replace(/&oacute;/g, 'ó').replace(/&shy;/g, '-').replace(/&ldquo;/g, '"')}
                 </Button>
             </CardActions>               
-            </Card>
+            </div>
         )
     }
   return (

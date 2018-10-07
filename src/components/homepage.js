@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import logo from "./images/logo.png"
+import Footer from './Footer';
+
 
 const styles = {
   image: {
@@ -9,7 +11,7 @@ const styles = {
     display: 'block',
     marginLeft: 'auto',
     marginRight: 'auto',
-    paddingTop: '10rem'
+    paddingTop: '8rem'
   },
   bullet: {
     display: 'inline-block',
@@ -22,6 +24,7 @@ function SimpleCard(props) {
   return (
     <div>
         <img src={logo} alt='logo' style={styles.image}/>
+        <Footer />
     </div>
   );
 }
