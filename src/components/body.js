@@ -29,7 +29,7 @@ class Body extends Component {
      
     componentWillMount() {
         try {
-            // this.props.onName(prompt("What name would you like to use for high scores?", "Anonymous"))
+            this.props.onName(prompt("What name would you like to use for high scores?", "Anonymous"))
         }
         catch(err) {
             this.props.onName('Anonymous')            
